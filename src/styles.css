@@ -7,14 +7,15 @@
 }
 
 :root {
-  --primary-color: #2c3e50;
-  --secondary-color: #3498db;
-  --accent-color: #e74c3c;
-  --text-primary: #2c3e50;
-  --text-secondary: #7f8c8d;
+  --primary-color: #7566D9;
+  --secondary-color: #9C99F2;
+  --tertiary-color: #96A0D9;
+  --accent-color: #A7BDD9;
   --background: #ffffff;
-  --background-light: #f8f9fa;
-  --border-color: #e1e8ed;
+  --background-light: #F2F2F2;
+  --text-primary: #0D0D0D;
+  --text-secondary: #7566D9;
+  --border-color: #96A0D9;
 }
 
 body {
