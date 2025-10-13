@@ -2,20 +2,43 @@
   <div class="about-content">
     <div class="about-images">
       <div class="image-small">
-        <img src="images.jpg" alt="About Image 1">
+        <img [src]="content.images.small.src" [alt]="content.images.small.alt">
       </div>
       <div class="image-large">
-        <img src="images.jpg" alt="About Image 2">
+        <img [src]="content.images.large.src" [alt]="content.images.large.alt">
       </div>
     </div>
     <div class="about-text">
-      <h2 class="about-title">About me</h2>
-      <p class="about-description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      </p>
-      <p class="about-description">
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
+      <h2 class="about-title">{{ content.title }}</h2>
+      @for (paragraph of content.paragraphs; track paragraph) {
+        <p class="about-description">{{ paragraph }}</p>
+      }
+    </div>
+  </div>
+
+  <div class="stats-section">
+    <div class="stats-list">
+      @for (stat of content.stats; track stat.label; let i = $index) {
+        <mat-card class="stat-card" (click)="toggleExpand(i)">
+          <div class="stat-content">
+            <div class="stat-left">
+              <mat-icon class="stat-icon">{{ stat.icon }}</mat-icon>
+              <div class="stat-label">{{ stat.label }}</div>
+            </div>
+            <div class="stat-right" [class.expanded]="expandedStates[i]">
+              <div class="stat-summary">
+                <span class="stat-value">{{ stat.value }}</span>
+                <span class="stat-description">{{ stat.description }}</span>
+              </div>
+              <ul class="stat-details">
+                @for (detail of stat.details; track detail) {
+                  <li>{{ detail }}</li>
+                }
+              </ul>
+            </div>
+          </div>
+        </mat-card>
+      }
     </div>
   </div>
 </section>

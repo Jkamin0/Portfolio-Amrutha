@@ -1,12 +1,10 @@
 <mat-toolbar class="header">
   <div class="nav-container">
-    <span class="nav-brand">Essay Consulting</span>
+    <span class="nav-brand">{{ content.brandName }}</span>
     <div class="nav-links">
-      <button mat-button (click)="scrollToTop()">Home</button>
-      <button mat-button (click)="scrollToSection('about')">About</button>
-      <button mat-button (click)="scrollToSection('services')">Services</button>
-      <button mat-button (click)="scrollToSection('testimonials')">Testimonials</button>
-      <button mat-button (click)="scrollToSection('contact')">Contact</button>
+      @for (navItem of content.navItems; track navItem.label) {
+        <button mat-button (click)="scrollToSection(navItem.sectionId)">{{ navItem.label }}</button>
+      }
     </div>
     <button mat-icon-button class="mobile-menu-button" (click)="toggleMobileMenu()">
       <mat-icon>{{ mobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
@@ -14,9 +12,7 @@
   </div>
 </mat-toolbar>
 <div class="mobile-nav" [class.open]="mobileMenuOpen">
-  <button mat-button (click)="scrollToTop()">Home</button>
-  <button mat-button (click)="scrollToSection('about')">About</button>
-  <button mat-button (click)="scrollToSection('services')">Services</button>
-  <button mat-button (click)="scrollToSection('testimonials')">Testimonials</button>
-  <button mat-button (click)="scrollToSection('contact')">Contact</button>
+  @for (navItem of content.navItems; track navItem.label) {
+    <button mat-button (click)="scrollToSection(navItem.sectionId)">{{ navItem.label }}</button>
+  }
 </div>

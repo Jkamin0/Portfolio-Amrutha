@@ -81,3 +81,9 @@
     display: flex;
   }
 }
+
+@media (max-width: 600px) {
+  .mobile-nav {
+    top: 56px;
+  }
+}
