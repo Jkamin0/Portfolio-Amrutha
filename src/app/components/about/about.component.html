@@ -17,27 +17,48 @@
   </div>
 
   <div class="stats-section">
-    <div class="stats-list">
+    <h2 class="credentials-title">Credentials</h2>
+    <div class="stats-grid">
       @for (stat of content.stats; track stat.label; let i = $index) {
-        <mat-card class="stat-card" (click)="toggleExpand(i)">
-          <div class="stat-content">
-            <div class="stat-left">
-              <mat-icon class="stat-icon">{{ stat.icon }}</mat-icon>
-              <div class="stat-label">{{ stat.label }}</div>
+        <div class="flip-card" [class.flipped]="isFlipped(i)" (click)="toggleFlip(i)">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <mat-card>
+                <mat-card-content>
+                  <div class="card-icon-wrapper">
+                    <mat-icon class="card-icon">{{ stat.icon }}</mat-icon>
+                  </div>
+                  <div class="card-value">{{ stat.value }}</div>
+                  <div class="card-label">{{ stat.label }}</div>
+                  <div class="card-description">{{ stat.description }}</div>
+                  <div class="flip-hint">
+                    <mat-icon>flip</mat-icon>
+                    <span>Click to see details</span>
+                  </div>
+                </mat-card-content>
+              </mat-card>
             </div>
-            <div class="stat-right" [class.expanded]="expandedStates[i]">
-              <div class="stat-summary">
-                <span class="stat-value">{{ stat.value }}</span>
-                <span class="stat-description">{{ stat.description }}</span>
-              </div>
-              <ul class="stat-details">
-                @for (detail of stat.details; track detail) {
-                  <li>{{ detail }}</li>
-                }
-              </ul>
+            <div class="flip-card-back">
+              <mat-card>
+                <mat-card-content>
+                  <div class="back-header">
+                    <mat-icon class="back-icon">{{ stat.icon }}</mat-icon>
+                    <h3>{{ stat.label }}</h3>
+                  </div>
+                  <ul class="details-list">
+                    @for (detail of stat.details; track detail) {
+                      <li>{{ detail }}</li>
+                    }
+                  </ul>
+                  <div class="flip-hint">
+                    <mat-icon>flip</mat-icon>
+                    <span>Click to flip back</span>
+                  </div>
+                </mat-card-content>
+              </mat-card>
             </div>
           </div>
-        </mat-card>
+        </div>
       }
     </div>
   </div>

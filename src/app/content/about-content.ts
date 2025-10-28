@@ -32,7 +32,6 @@ export const aboutContent = {
         'Master of Arts in English Language and Literature, Composition',
         'Bachelor of Arts in English/Language Arts Teacher Education',
         'Utah State Board of Education High School Teacher Certification',
-        'Specialized training in composition, rhetoric, and pedagogy',
       ],
     },
     {
