@@ -13,7 +13,7 @@ export const servicesContent = {
       icon: 'edit_note',
       title: 'Essay Brainstorming & Development',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        'Transform blank pages into compelling narratives. Together we will explore your experiences, identify powerful themes, and craft authentic stories that showcase your unique perspective and potential.',
       features: [
         'One-on-one brainstorming sessions',
         'Topic selection guidance',
@@ -25,7 +25,7 @@ export const servicesContent = {
       icon: 'rate_review',
       title: 'Comprehensive Review & Editing',
       description:
-        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        'Elevate your essays from good to exceptional. Receive detailed, constructive feedback on organization, clarity, and impact, with multiple revision cycles to ensure every word serves your narrative.',
       features: [
         'Detailed feedback on structure and content',
         'Grammar and style refinement',
@@ -37,7 +37,7 @@ export const servicesContent = {
       icon: 'psychology',
       title: 'Strategy & Positioning',
       description:
-        'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+        'Stand out in a competitive applicant pool. Develop a cohesive application strategy that positions you effectively, aligns your essays with your goals, and presents a memorable personal brand.',
       features: [
         'Application strategy planning',
         'Personal brand development',

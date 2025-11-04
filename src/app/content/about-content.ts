@@ -7,7 +7,7 @@ export interface StatItem {
 }
 
 export const aboutContent = {
-  title: 'About me',
+  title: 'About Me',
   paragraphs: [
     'As an educator and writing specialist, I am passionate about helping students find their authentic voice and tell their unique stories. With experience teaching composition and rhetoric at both the high school and university levels, I understand what makes writing compelling, persuasive, and memorable. My approach combines academic rigor with personalized coaching to help students craft essays that truly reflect who they are.',
     'Throughout my career, I have guided students through every stage of the writing process—from brainstorming and drafting to revision and polish. Whether working with high schoolers on college applications or university students on persuasive writing, I focus on developing critical thinking skills and helping writers discover what makes their perspective distinctive. My background in speech and debate also informs my teaching, emphasizing clarity, argumentation, and the power of effective communication.',
@@ -15,11 +15,11 @@ export const aboutContent = {
   images: {
     small: {
       src: 'images.jpg',
-      alt: 'About Image 1',
+      alt: 'Professional headshot of college essay consultant in an academic setting',
     },
     large: {
       src: 'images.jpg',
-      alt: 'About Image 2',
+      alt: 'Essay consultant working with students, reviewing college application essays and providing personalized feedback',
     },
   },
   stats: [

@@ -1,18 +1,40 @@
-<mat-toolbar class="header">
+<mat-toolbar class="header" role="banner">
   <div class="nav-container">
-    <span class="nav-brand">{{ content.brandName }}</span>
-    <div class="nav-links">
+    <button class="nav-brand" (click)="scrollToSection()" aria-label="Home - Essay Consulting">
+      {{ content.brandName }}
+    </button>
+    <nav class="nav-links" role="navigation" aria-label="Main navigation">
       @for (navItem of content.navItems; track navItem.label) {
-        <button mat-button (click)="scrollToSection(navItem.sectionId)">{{ navItem.label }}</button>
+        <button
+          mat-button
+          (click)="scrollToSection(navItem.sectionId)"
+          [attr.aria-label]="'Navigate to ' + navItem.label + ' section'">
+          {{ navItem.label }}
+        </button>
       }
-    </div>
-    <button mat-icon-button class="mobile-menu-button" (click)="toggleMobileMenu()">
+    </nav>
+    <button
+      mat-icon-button
+      class="mobile-menu-button"
+      (click)="toggleMobileMenu()"
+      [attr.aria-label]="mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'"
+      [attr.aria-expanded]="mobileMenuOpen">
       <mat-icon>{{ mobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
     </button>
   </div>
 </mat-toolbar>
-<div class="mobile-nav" [class.open]="mobileMenuOpen">
+<nav
+  class="mobile-nav"
+  [class.open]="mobileMenuOpen"
+  role="navigation"
+  aria-label="Mobile navigation"
+  [attr.aria-hidden]="!mobileMenuOpen">
   @for (navItem of content.navItems; track navItem.label) {
-    <button mat-button (click)="scrollToSection(navItem.sectionId)">{{ navItem.label }}</button>
+    <button
+      mat-button
+      (click)="scrollToSection(navItem.sectionId)"
+      [attr.aria-label]="'Navigate to ' + navItem.label + ' section'">
+      {{ navItem.label }}
+    </button>
   }
-</div>
+</nav>

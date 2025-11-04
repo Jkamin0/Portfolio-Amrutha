@@ -12,9 +12,24 @@ export class HeroComponent {
   content = heroContent;
 
   onGetStarted(): void {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
+    this.scrollToSection('contact');
+  }
+
+  onLearnMore(): void {
+    this.scrollToSection('services');
+  }
+
+  private scrollToSection(sectionId: string): void {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const headerOffset = 80;
+      const elementPosition = section.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   }
 }

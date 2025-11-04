@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,12 +10,46 @@ import { headerContent, NavItem } from '../../content/header-content';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
   content = headerContent;
   mobileMenuOpen = false;
+  activeSection: string | null = null;
+
+  ngOnInit(): void {
+    this.updateActiveSection();
+  }
+
+  ngOnDestroy(): void {
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    this.updateActiveSection();
+  }
 
   toggleMobileMenu(): void {
     this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  private updateActiveSection(): void {
+    const sections = ['about', 'services', 'testimonials', 'contact'];
+    const scrollPosition = window.pageYOffset + 100;
+
+    for (const sectionId of sections) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          this.activeSection = sectionId;
+          return;
+        }
+      }
+    }
+
+    if (window.pageYOffset < 100) {
+      this.activeSection = null;
+    }
   }
 
   scrollToSection(sectionId?: string): void {
@@ -25,7 +59,14 @@ export class HeaderComponent {
     }
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
       this.mobileMenuOpen = false;
     }
   }

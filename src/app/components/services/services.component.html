@@ -1,28 +1,28 @@
-<section id="services" class="services">
+<section id="services" class="services" aria-labelledby="services-heading">
   <div class="services-header">
-    <h2 class="services-title">{{ content.title }}</h2>
+    <h2 id="services-heading" class="services-title">{{ content.title }}</h2>
     <p class="services-subtitle">{{ content.subtitle }}</p>
   </div>
 
   <div class="services-list">
     @for (service of content.services; track service.title; let i = $index; let isLast = $last) {
-      <div class="service-item" [class.reverse]="i % 2 === 1">
-        <div class="service-number">{{ i + 1 }}</div>
+      <article class="service-item" [class.reverse]="i % 2 === 1" [attr.aria-labelledby]="'service-title-' + i">
+        <div class="service-number" aria-hidden="true">{{ i + 1 }}</div>
         <div class="service-content">
           <div class="service-header">
-            <mat-icon class="service-icon">{{ service.icon }}</mat-icon>
-            <h3 class="service-title">{{ service.title }}</h3>
+            <mat-icon class="service-icon" aria-hidden="true">{{ service.icon }}</mat-icon>
+            <h3 [id]="'service-title-' + i" class="service-title">{{ service.title }}</h3>
           </div>
           <p class="service-description">{{ service.description }}</p>
-          <div class="service-features">
+          <ul class="service-features" aria-label="Key features of {{ service.title }}">
             @for (feature of service.features; track feature) {
-              <div class="feature-tag">{{ feature }}</div>
+              <li class="feature-tag">{{ feature }}</li>
             }
-          </div>
+          </ul>
         </div>
-      </div>
+      </article>
       @if (!isLast) {
-        <div class="service-divider"></div>
+        <div class="service-divider" aria-hidden="true"></div>
       }
     }
   </div>

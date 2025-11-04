@@ -1,10 +1,28 @@
-<section class="hero">
+<section class="hero" aria-labelledby="hero-title">
   <div class="hero-content">
     <div class="hero-image">
-      <img [src]="content.imageSrc" [alt]="content.imageAlt">
+      <img [src]="content.imageSrc" [alt]="content.imageAlt" loading="eager">
     </div>
     <div class="hero-text">
-      <h1 class="hero-title" [innerHTML]="content.title"></h1>
+      <h1 id="hero-title" class="hero-title" [innerHTML]="content.title"></h1>
+      <p class="hero-subtitle">{{ content.subtitle }}</p>
+      <div class="hero-actions" role="group" aria-label="Call to action buttons">
+        <button
+          mat-raised-button
+          color="primary"
+          class="cta-primary"
+          (click)="onGetStarted()"
+          aria-label="Get started with essay consulting services">
+          {{ content.ctaButton }}
+        </button>
+        <button
+          mat-stroked-button
+          class="cta-secondary"
+          (click)="onLearnMore()"
+          aria-label="Learn more about our services">
+          {{ content.learnMoreButton }}
+        </button>
+      </div>
     </div>
   </div>
 </section>

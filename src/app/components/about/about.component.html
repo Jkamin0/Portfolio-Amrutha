@@ -1,48 +1,57 @@
-<section id="about" class="about">
+<section id="about" class="about" aria-labelledby="about-heading">
   <div class="about-content">
-    <div class="about-images">
+    <div class="about-images" role="img" aria-label="Professional portfolio images">
       <div class="image-small">
-        <img [src]="content.images.small.src" [alt]="content.images.small.alt">
+        <img [src]="content.images.small.src" [alt]="content.images.small.alt" loading="lazy">
       </div>
       <div class="image-large">
-        <img [src]="content.images.large.src" [alt]="content.images.large.alt">
+        <img [src]="content.images.large.src" [alt]="content.images.large.alt" loading="lazy">
       </div>
     </div>
     <div class="about-text">
-      <h2 class="about-title">{{ content.title }}</h2>
+      <h2 id="about-heading" class="about-title">{{ content.title }}</h2>
       @for (paragraph of content.paragraphs; track paragraph) {
         <p class="about-description">{{ paragraph }}</p>
       }
     </div>
   </div>
 
-  <div class="stats-section">
-    <h2 class="credentials-title">Credentials</h2>
-    <div class="stats-grid">
+  <div class="stats-section" aria-labelledby="credentials-heading">
+    <h2 id="credentials-heading" class="credentials-title">Credentials</h2>
+    <div class="stats-grid" role="list">
       @for (stat of content.stats; track stat.label; let i = $index) {
-        <div class="flip-card" [class.flipped]="isFlipped(i)" (click)="toggleFlip(i)">
+        <div
+          class="flip-card"
+          [class.flipped]="isFlipped(i)"
+          (click)="toggleFlip(i)"
+          (keydown.enter)="toggleFlip(i)"
+          (keydown.space)="toggleFlip(i); $event.preventDefault()"
+          tabindex="0"
+          role="button"
+          [attr.aria-label]="isFlipped(i) ? 'Credential details for ' + stat.label + '. Press enter to flip back.' : 'Credential card: ' + stat.value + ' ' + stat.label + '. Press enter to view details.'"
+          [attr.aria-pressed]="isFlipped(i)">
           <div class="flip-card-inner">
-            <div class="flip-card-front">
+            <div class="flip-card-front" [attr.aria-hidden]="isFlipped(i)" [attr.inert]="isFlipped(i) ? true : null">
               <mat-card>
                 <mat-card-content>
-                  <div class="card-icon-wrapper">
+                  <div class="card-icon-wrapper" aria-hidden="true">
                     <mat-icon class="card-icon">{{ stat.icon }}</mat-icon>
                   </div>
-                  <div class="card-value">{{ stat.value }}</div>
+                  <div class="card-value" aria-label="{{ stat.value }} {{ stat.label }}">{{ stat.value }}</div>
                   <div class="card-label">{{ stat.label }}</div>
                   <div class="card-description">{{ stat.description }}</div>
-                  <div class="flip-hint">
+                  <div class="flip-hint" aria-hidden="true">
                     <mat-icon>flip</mat-icon>
                     <span>Click to see details</span>
                   </div>
                 </mat-card-content>
               </mat-card>
             </div>
-            <div class="flip-card-back">
+            <div class="flip-card-back" [attr.aria-hidden]="!isFlipped(i)" [attr.inert]="!isFlipped(i) ? true : null">
               <mat-card>
                 <mat-card-content>
                   <div class="back-header">
-                    <mat-icon class="back-icon">{{ stat.icon }}</mat-icon>
+                    <mat-icon class="back-icon" aria-hidden="true">{{ stat.icon }}</mat-icon>
                     <h3>{{ stat.label }}</h3>
                   </div>
                   <ul class="details-list">
@@ -50,7 +59,7 @@
                       <li>{{ detail }}</li>
                     }
                   </ul>
-                  <div class="flip-hint">
+                  <div class="flip-hint" aria-hidden="true">
                     <mat-icon>flip</mat-icon>
                     <span>Click to flip back</span>
                   </div>
