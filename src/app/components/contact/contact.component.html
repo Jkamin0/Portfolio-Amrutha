@@ -1,0 +1,33 @@
+<section id="contact" class="contact" aria-labelledby="contact-heading">
+  <div class="contact-container">
+    <div class="contact-header">
+      <h2 id="contact-heading" class="contact-title">{{ content.title }}</h2>
+      <p class="contact-subtitle">{{ content.subtitle }}</p>
+    </div>
+
+    <div class="contact-grid" role="list">
+      @for (method of content.contactMethods; track method.label) {
+        <article class="contact-card" role="listitem">
+          <mat-card>
+            <mat-card-content>
+              <div class="contact-icon-wrapper" aria-hidden="true">
+                <mat-icon class="contact-icon">{{ method.icon }}</mat-icon>
+              </div>
+              <h3 class="contact-method-label">{{ method.label }}</h3>
+              <p class="contact-method-value">{{ method.value }}</p>
+              <p class="contact-method-description">{{ method.description }}</p>
+              <button
+                mat-raised-button
+                color="primary"
+                class="contact-button"
+                (click)="onContactClick(method.icon)"
+                [attr.aria-label]="method.label === 'Schedule a Consultation' ? 'Schedule a free consultation' : 'Contact via ' + method.label">
+                {{ method.label === 'Schedule a Consultation' ? 'Book Now' : 'Contact Now' }}
+              </button>
+            </mat-card-content>
+          </mat-card>
+        </article>
+      }
+    </div>
+  </div>
+</section>

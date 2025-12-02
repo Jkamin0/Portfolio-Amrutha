@@ -25,13 +25,13 @@
           [class.flipped]="isFlipped(i)"
           (click)="toggleFlip(i)"
           (keydown.enter)="toggleFlip(i)"
-          (keydown.space)="toggleFlip(i); $event.preventDefault()"
+          (keydown.space)="$event.preventDefault(); toggleFlip(i)"
           tabindex="0"
           role="button"
-          [attr.aria-label]="isFlipped(i) ? 'Credential details for ' + stat.label + '. Press enter to flip back.' : 'Credential card: ' + stat.value + ' ' + stat.label + '. Press enter to view details.'"
+          [attr.aria-label]="isFlipped(i) ? 'Credential details for ' + stat.label + '. Press enter or space to flip back.' : 'Credential card: ' + stat.value + ' ' + stat.label + '. Press enter or space to view details.'"
           [attr.aria-pressed]="isFlipped(i)">
           <div class="flip-card-inner">
-            <div class="flip-card-front" [attr.aria-hidden]="isFlipped(i)" [attr.inert]="isFlipped(i) ? true : null">
+            <div class="flip-card-front" [attr.aria-hidden]="isFlipped(i)">
               <mat-card>
                 <mat-card-content>
                   <div class="card-icon-wrapper" aria-hidden="true">
@@ -47,7 +47,7 @@
                 </mat-card-content>
               </mat-card>
             </div>
-            <div class="flip-card-back" [attr.aria-hidden]="!isFlipped(i)" [attr.inert]="!isFlipped(i) ? true : null">
+            <div class="flip-card-back" [attr.aria-hidden]="!isFlipped(i)">
               <mat-card>
                 <mat-card-content>
                   <div class="back-header">

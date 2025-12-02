@@ -52,12 +52,28 @@
   transition: all 0.2s ease;
   border-radius: 6px;
   font-size: 1rem;
+  position: relative;
 }
 
 .nav-links button:hover {
   color: white;
   background-color: rgba(255, 255, 255, 0.15);
   transform: translateY(-1px);
+}
+
+.nav-links button.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-links button.active::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 20px;
+  right: 20px;
+  height: 2px;
+  background-color: white;
+  border-radius: 2px;
 }
 
 .nav-links button:focus-visible {
@@ -92,11 +108,13 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
   transform: translateY(-10px);
   opacity: 0;
+  pointer-events: none;
 }
 
 .mobile-nav.open {
   transform: translateY(0);
   opacity: 1;
+  pointer-events: auto;
 }
 
 .mobile-nav button {
@@ -108,10 +126,16 @@
   font-size: 1.125rem;
   min-height: 56px;
   transition: background-color 0.2s ease;
+  border-radius: 6px;
 }
 
 .mobile-nav button:hover {
   background-color: rgba(255, 255, 255, 0.15);
+}
+
+.mobile-nav button.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-left: 4px solid white;
 }
 
 .mobile-nav button:focus-visible {
@@ -137,5 +161,16 @@
 @media (max-width: 600px) {
   .mobile-nav {
     top: 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-links button:hover,
+  .nav-brand:hover {
+    transform: none;
+  }
+
+  .mobile-nav {
+    transition: opacity 0.01ms;
   }
 }

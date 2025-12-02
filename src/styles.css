@@ -14,8 +14,8 @@
   --background: #ffffff;
   --background-light: #F9F9FB;
   --text-primary: #1A1A1A;
-  --text-secondary: #4A4A4A;
-  --text-muted: #6B6B6B;
+  --text-secondary: #3D3D3D;
+  --text-muted: #555555;
   --border-color: #96A0D9;
   --success-color: #10B981;
   --error-color: #EF4444;
@@ -23,11 +23,15 @@
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+  --header-height: 80px;
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.3s ease;
+  --transition-slow: 0.5s ease;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: var(--header-height);
 }
 
 html, body {
@@ -70,8 +74,21 @@ p {
   line-height: 1.75;
 }
 
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
 button:focus-visible,
-a:focus-visible {
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
   outline: 2px solid var(--primary-color);
   outline-offset: 2px;
 }
@@ -97,6 +114,17 @@ section {
   }
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -106,7 +134,21 @@ section {
     transition-duration: 0.01ms !important;
   }
 
+  html {
+    scroll-behavior: auto;
+  }
+
   section {
     animation: none;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 56px;
+  }
+
+  html {
+    scroll-padding-top: var(--header-height);
   }
 }

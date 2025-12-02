@@ -8,7 +8,9 @@
         <button
           mat-button
           (click)="scrollToSection(navItem.sectionId)"
-          [attr.aria-label]="'Navigate to ' + navItem.label + ' section'">
+          [class.active]="isActive(navItem.sectionId)"
+          [attr.aria-label]="'Navigate to ' + navItem.label + ' section'"
+          [attr.aria-current]="isActive(navItem.sectionId) ? 'page' : null">
           {{ navItem.label }}
         </button>
       }
@@ -33,7 +35,9 @@
     <button
       mat-button
       (click)="scrollToSection(navItem.sectionId)"
-      [attr.aria-label]="'Navigate to ' + navItem.label + ' section'">
+      [class.active]="isActive(navItem.sectionId)"
+      [attr.aria-label]="'Navigate to ' + navItem.label + ' section'"
+      [attr.aria-current]="isActive(navItem.sectionId) ? 'page' : null">
       {{ navItem.label }}
     </button>
   }

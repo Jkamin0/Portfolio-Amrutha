@@ -1,12 +1,12 @@
 .about {
   background-color: var(--background);
+  padding: 6rem 0;
 }
 
 .about-content {
-  min-height: 90vh;
-  padding: 6rem 4rem;
+  padding: 0 4rem;
   max-width: 1600px;
-  margin: 0 auto;
+  margin: 0 auto 6rem auto;
   display: flex;
   align-items: center;
   gap: 6rem;
@@ -81,27 +81,13 @@
 }
 
 .stats-section {
-  min-height: 90vh;
-  padding: 6rem 4rem;
+  padding: 0 4rem 6rem 4rem;
   max-width: 1400px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: linear-gradient(180deg, var(--background) 0%, var(--background-light) 100%);
   position: relative;
-}
-
-.stats-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: radial-gradient(circle at 2px 2px, rgba(117, 102, 217, 0.03) 1px, transparent 0);
-  background-size: 32px 32px;
-  pointer-events: none;
 }
 
 .credentials-title {
@@ -343,8 +329,13 @@
 }
 
 @media (max-width: 768px) {
+  .about {
+    padding: 4rem 0;
+  }
+
   .about-content {
-    padding: 4rem 2rem;
+    padding: 0 2rem;
+    margin: 0 auto 4rem auto;
     flex-direction: column;
     gap: 3rem;
   }
@@ -362,7 +353,7 @@
   }
 
   .stats-section {
-    padding: 4rem 2rem;
+    padding: 0 2rem 4rem 2rem;
   }
 
   .credentials-title {

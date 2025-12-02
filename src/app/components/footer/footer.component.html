@@ -1,0 +1,44 @@
+<footer class="footer" role="contentinfo">
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3 class="footer-brand">Essay Consulting</h3>
+        <p class="footer-tagline">Crafting essays that open doors to your dream schools.</p>
+      </div>
+
+      <div class="footer-section">
+        <h4 class="footer-heading">Quick Links</h4>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <button class="footer-link" (click)="scrollToSection('about')" aria-label="Navigate to About section">About</button>
+          <button class="footer-link" (click)="scrollToSection('services')" aria-label="Navigate to Services section">Services</button>
+          <button class="footer-link" (click)="scrollToSection('testimonials')" aria-label="Navigate to Testimonials section">Testimonials</button>
+          <button class="footer-link" (click)="scrollToSection('contact')" aria-label="Navigate to Contact section">Contact</button>
+        </nav>
+      </div>
+
+      <div class="footer-section">
+        <h4 class="footer-heading">Contact</h4>
+        <div class="footer-contact">
+          <p>
+            <mat-icon aria-hidden="true">email</mat-icon>
+            <a href="mailto:contact@essayconsulting.com" class="footer-contact-link">contact@essayconsulting.com</a>
+          </p>
+          <p>
+            <mat-icon aria-hidden="true">phone</mat-icon>
+            <a href="tel:+15551234567" class="footer-contact-link">+1 (555) 123-4567</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copyright">
+        &copy; {{ currentYear }} Essay Consulting. All rights reserved.
+      </p>
+      <button class="back-to-top" (click)="scrollToTop()" aria-label="Back to top">
+        <mat-icon>arrow_upward</mat-icon>
+        <span>Back to Top</span>
+      </button>
+    </div>
+  </div>
+</footer>

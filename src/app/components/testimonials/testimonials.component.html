@@ -1,53 +1,55 @@
 <section id="testimonials" class="testimonials" aria-labelledby="testimonials-heading">
-  <div class="testimonials-header">
-    <h2 id="testimonials-heading" class="testimonials-title">{{ content.title }}</h2>
-    <p class="testimonials-subtitle">{{ content.subtitle }}</p>
-  </div>
+  <div class="testimonials-container">
+    <div class="testimonials-header">
+      <h2 id="testimonials-heading" class="testimonials-title">{{ content.title }}</h2>
+      <p class="testimonials-subtitle">{{ content.subtitle }}</p>
+    </div>
 
-  <div class="testimonials-grid" role="list">
-    @for (testimonial of content.testimonials; track testimonial.clientName) {
-      <article
-        class="testimonial-card"
-        role="listitem"
-        [attr.aria-label]="'Testimonial from ' + testimonial.clientName + ', ' + testimonial.achievement">
-        <mat-card>
-          <mat-card-content>
-            <div class="quote-icon-wrapper" aria-hidden="true">
-              <mat-icon class="quote-icon">format_quote</mat-icon>
-            </div>
-
-            <div class="rating" role="img" [attr.aria-label]="testimonial.rating + ' out of 5 stars'">
-              @for (star of getStarArray(testimonial.rating); track $index) {
-                <mat-icon class="star-icon" aria-hidden="true">star</mat-icon>
-              }
-            </div>
-
-            <blockquote class="testimonial-quote">
-              <p>{{ testimonial.quote }}</p>
-            </blockquote>
-
-            <div class="testimonial-author">
-              <div class="author-avatar" aria-hidden="true">
-                <mat-icon>account_circle</mat-icon>
+    <div class="testimonials-grid" role="list">
+      @for (testimonial of content.testimonials; track testimonial.clientName) {
+        <article
+          class="testimonial-card"
+          role="listitem"
+          [attr.aria-label]="'Testimonial from ' + testimonial.clientName + ', ' + testimonial.achievement">
+          <mat-card>
+            <mat-card-content>
+              <div class="quote-icon-wrapper" aria-hidden="true">
+                <mat-icon class="quote-icon">format_quote</mat-icon>
               </div>
-              <div class="author-info">
-                <div class="author-name">
-                  {{ testimonial.clientName }}
-                  @if (testimonial.verified) {
-                    <mat-icon
-                      class="verified-badge"
-                      aria-label="Verified client"
-                      title="Verified client">
-                      verified
-                    </mat-icon>
-                  }
+
+              <div class="rating" role="img" [attr.aria-label]="testimonial.rating + ' out of 5 stars'">
+                @for (star of getStarArray(testimonial.rating); track $index) {
+                  <mat-icon class="star-icon" aria-hidden="true">star</mat-icon>
+                }
+              </div>
+
+              <blockquote class="testimonial-quote">
+                <p>{{ testimonial.quote }}</p>
+              </blockquote>
+
+              <div class="testimonial-author">
+                <div class="author-avatar" aria-hidden="true">
+                  <mat-icon>account_circle</mat-icon>
                 </div>
-                <div class="author-achievement">{{ testimonial.achievement }}</div>
+                <div class="author-info">
+                  <div class="author-name">
+                    {{ testimonial.clientName }}
+                    @if (testimonial.verified) {
+                      <mat-icon
+                        class="verified-badge"
+                        aria-label="Verified client"
+                        title="Verified client">
+                        verified
+                      </mat-icon>
+                    }
+                  </div>
+                  <div class="author-achievement">{{ testimonial.achievement }}</div>
+                </div>
               </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </article>
-    }
+            </mat-card-content>
+          </mat-card>
+        </article>
+      }
+    </div>
   </div>
 </section>

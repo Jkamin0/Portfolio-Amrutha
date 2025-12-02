@@ -27,6 +27,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.updateActiveSection();
   }
 
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    const mobileNav = document.querySelector('.mobile-nav');
+    const menuButton = document.querySelector('.mobile-menu-button');
+
+    if (this.mobileMenuOpen && mobileNav && menuButton) {
+      if (!mobileNav.contains(target) && !menuButton.contains(target)) {
+        this.mobileMenuOpen = false;
+      }
+    }
+  }
+
+  @HostListener('window:keydown.escape', [])
+  onEscapeKey(): void {
+    if (this.mobileMenuOpen) {
+      this.mobileMenuOpen = false;
+    }
+  }
+
   toggleMobileMenu(): void {
     this.mobileMenuOpen = !this.mobileMenuOpen;
   }
@@ -67,12 +87,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
         top: offsetPosition,
         behavior: 'smooth'
       });
-      this.mobileMenuOpen = false;
     }
+    this.mobileMenuOpen = false;
   }
 
   scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     this.mobileMenuOpen = false;
+  }
+
+  isActive(sectionId?: string): boolean {
+    if (!sectionId) {
+      return this.activeSection === null;
+    }
+    return this.activeSection === sectionId;
   }
 }
